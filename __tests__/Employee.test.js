@@ -24,6 +24,10 @@ const { isMainThread } = require("node:worker_threads");
 const Employee = require("../employee.js.js");
 
 describe('employee', () => {
+
+    it("Prompts for employee name, id number and email if parameters aren't provided.",()=>{
+        expect(()=>{ new Employee() }).toThrow('Provide all employee details.');
+    })
     it("throws an error")
 })
 
