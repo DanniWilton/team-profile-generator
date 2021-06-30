@@ -20,27 +20,29 @@
 // id
 // team/office number
 
-const { isMainThread } = require("node:worker_threads");
-const Employee = require("../employee.js.js");
+// const { isMainThread } = require("node:worker_threads");
+// const Employee = require("../employee.js");
 
-describe('employee', () => {
+// describe('employee', () => {
 
-    it("Prompts for employee name, id number and email if parameters aren't provided.",()=>{
-        expect(()=>{ new Employee() }).toThrow('Provide all employee details.');
-    })
-    it("throws an error")
-})
+//     it("Prompts for employee name, id number and email if parameters aren't provided.",()=>{
+//         expect(()=>{ new Employee() }).toThrow('Provide all employee details.');
+//     })
+//     it("throws an error")
+// )}
+const Employee = require("../lib/Employee.js");
 
-//name
+describe("Employee", () => {
 
-// id
+    it('When no information is provided, show an error', () => {
+        expect(() => {
+            new Employee();
+        }).toThrow('Please provide name, email and id');
+    });
 
-// email
+    it('New Employee object created', () => {
+        const newEmployee = {};
+        expect(typeof(newEmployee)).toEqual("object");
+    });
 
-// getName()
-
-// getId()
-
-// getEmail()
-
-// getRole()—returns 'Employee'
+};
