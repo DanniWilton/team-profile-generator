@@ -34,7 +34,7 @@ const Employee = require("../lib/Employee.js");
 
 describe("Employee", () => {
 
-    it('When no information is provided, show an error', () => {
+    it('When no information is provided, throw an error', () => {
         expect(() => {
             new Employee();
         }).toThrow('Please provide name, email and id');
@@ -44,5 +44,37 @@ describe("Employee", () => {
         const newEmployee = {};
         expect(typeof(newEmployee)).toEqual("object");
     });
+
+    it('throws an error if name is not a string', () => {
+        expect(() => {
+            new Employee();
+        }).toThrow("Please provide name, email and id");
+    });
+
+    it('throws an error if name is an empty string', () => {
+        expect(() => {
+            new Employee();
+        }).toThrow("Please provide name, email and id");
+    });
+
+    it('throws an error if id is not an integer', () => {
+        expect(() => {
+            new Employee();
+        }).toThrow("Please provide name, email and id");
+    });
+
+    it('throws an error if email is not a string', () => {
+        expect(() => {
+            new Employee();
+        }).toThrow("Please provide name, email and id");
+    });
+
+    it('throws an error if email is an empty string', () => {
+        expect(() => {
+            new Employee();
+        }).toThrow("Please provide name, email and id");
+    });
+
+
 
 });
