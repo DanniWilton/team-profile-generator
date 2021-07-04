@@ -1,45 +1,13 @@
-// manager, engineer, intern
+const employee = require("../lib/Employee.js");
+const prettier = require("prettier");
 
-// manager questions
-// name
-// email
-// id
-// team/ office number
+describe("employee", () => {
 
-// engineer
-// name
-// email
-// github
-// id
-// team/ office number
-
-// intern 
-// name
-// email
-// school
-// id
-// team/office number
-
-// const { isMainThread } = require("node:worker_threads");
-// const Employee = require("../employee.js");
-
-// describe('employee', () => {
-
-//     it("Prompts for employee name, id number and email if parameters aren't provided.",()=>{
-//         expect(()=>{ new Employee() }).toThrow('Provide all employee details.');
-//     })
-//     it("throws an error")
-// )}
-const Employee = require("../lib/Employee.js");
-
-describe("Employee", () => {
-
-    it('When no information is provided, throw an error', () => {
-        expect(() => {
-            new Employee();
-        }).toThrow('Please provide name, email and id');
+  it("throws an error when no information is provided", () => {
+      expect(() => {
+          new employee();
+      }).toThrow(console.error(err));
     });
-
     it('New Employee object created', () => {
         const newEmployee = {};
         expect(typeof(newEmployee)).toEqual("object");
@@ -47,34 +15,35 @@ describe("Employee", () => {
 
     it('throws an error if name is not a string', () => {
         expect(() => {
-            new Employee();
+            new employee();
         }).toThrow("Please provide name, email and id");
     });
 
     it('throws an error if name is an empty string', () => {
         expect(() => {
-            new Employee();
+            new employee();
         }).toThrow("Please provide name, email and id");
     });
 
     it('throws an error if id is not an integer', () => {
         expect(() => {
-            new Employee();
+            new employee();
         }).toThrow("Please provide name, email and id");
     });
 
     it('throws an error if email is not a string', () => {
         expect(() => {
-            new Employee();
+            new employee();
         }).toThrow("Please provide name, email and id");
     });
 
     it('throws an error if email is an empty string', () => {
         expect(() => {
-            new Employee();
+            new employee();
         }).toThrow("Please provide name, email and id");
     });
 
-
+    expect(actual).toEqual(prettier.format(expected, { parser: "html" }));
 
 });
+module.exports = generateEmployeeCard;
