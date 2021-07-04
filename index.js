@@ -5,53 +5,53 @@ const manager = require("./lib/manager.js");
 const intern = require("./lib/intern.js");
 const engineer = require("./lib/engineer.js")
 
-function managerQuestions() {
-    inquirer.prompt([
-        {
-            type: input,     
-            name: 'managerName',
-            message: 'Enter Manager name: '
-        },
-        {
-            type: input,
-            name: 'managerEmail',
-            message: 'Enter Manager email address: ',
-        },
-        {
-            type: input,
-            name: 'managerId',
-            message: 'Enter Manager ID: ',
-        },
-        {
-            type: input,
-            name: 'managerOfficeNumber',
-            message: 'Enter manager office number: ',
-        },
-        {
-            type: "checkbox",
-            message: "Select whether the employee is an Engineer or Intern, or select finish to complete building your team",
-            name: "jobRoles",
-            choices: ["Engineer", "Intern", "Finish"],
-        },
-    ])
 
-    .then((answers) => {
-            let teamManager = new manager(
-            answers.managerName,
-            answers.managerEmail,
-            answers.managerId,
-            answers.managerOfficeNumber
-        );
-        let employeeCardHtml = addTeamMemberToCard('manager', teamManager);
-        currentTeam = currentTeam + employeeCardHtml;
-        if (answers.jobRoles = "Engineer") {
-            engineerQuestions();
-        } else if (answers.jobRoles = "Intern") {
-            internQuestions();
-        } else {
-            writeToFile();
-        }
-    })}
+inquirer.prompt([
+            {
+                type: input,     
+                name: 'managerName',
+                message: 'Enter Manager name: '
+            },
+            {
+                type: input,
+                name: 'managerEmail',
+                message: 'Enter Manager email address: ',
+            },
+            {
+                type: input,
+                name: 'managerId',
+                message: 'Enter Manager ID: ',
+            },
+            {
+                type: input,
+                name: 'managerOfficeNumber',
+                message: 'Enter manager office number: ',
+            },
+            {
+                type: "checkbox",
+                message: "Select whether the employee is an Engineer or Intern, or select finish to complete building your team",
+                name: "jobRoles",
+                choices: ["Engineer", "Intern", "Finish"],
+            },
+        ])
+
+        .then((answers) => {
+                let teamManager = new manager(
+                answers.managerName,
+                answers.managerEmail,
+                answers.managerId,
+                answers.managerOfficeNumber
+            );
+            let employeeCardHtml = addTeamMemberToCard('manager', teamManager);
+            currentTeam = currentTeam + employeeCardHtml;
+            if (answers.jobRoles = "Engineer") {
+                engineerQuestions();
+            } else if (answers.jobRoles = "Intern") {
+                internQuestions();
+            } else {
+                writeToFile();
+            }
+        })
 
 function engineerQuestions() {
     inquirer.prompt([
@@ -132,4 +132,6 @@ function internQuestions() {
             } else {
                 writeToFile();
             };
-            })})}
+            })})};
+
+
