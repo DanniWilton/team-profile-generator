@@ -4,8 +4,8 @@ const inquirer = require("inquirer");
 const manager = require("./lib/manager.js");
 const intern = require("./lib/intern.js");
 const engineer = require("./lib/engineer.js");
-let currentTeam = ``;
 
+let currentTeam = ``;
 
 inquirer.prompt([
             {
@@ -78,21 +78,28 @@ function engineerQuestions() {
         },
         ])
             .then((answers) => {
-                let teamMember = new engineer(
+                let newTeamMember = new engineer(
                 answers.name,
                 answers.email,
                 answers.id,
                 answers.github,
             );
-            let employeeCardHtml = addTeamMemberToCard('engineer', teamMember);
-            currentTeam = currentTeam + employeeCardHtml;
-            if (answers.jobRoles = "engineer") {
-                engineerQuestions();
-            } else if (answers.jobRoles = "Intern") {
-                internQuestions();
+            currentTeam.push(engineer);
+            console.log(JSON.stringify(answers, null, " "));
+            if (answers.add === true) {
+                addTeamMemberToCard();
             } else {
-                writeToFile();
+                teamComplete
             }
+            // let employeeCardHtml = addTeamMemberToCard('engineer', teamMember);
+            // currentTeam = currentTeam + employeeCardHtml;
+            // if (answers.jobRoles = "engineer") {
+            //     engineerQuestions();
+            // } else if (answers.jobRoles = "Intern") {
+            //     internQuestions();
+            // } else {
+            //     writeToFile();
+            // }
     },
 function internQuestions() {
     inquirer.prompt([
@@ -124,23 +131,41 @@ function internQuestions() {
                 answers.id,
                 answers.school
             );
-            let employeeCardHtml = addTeamMemberToCard('intern', teamMember);
-            currentTeam = currentTeam + employeeCardHtml;
-            if (answers.jobRoles = "engineer") {
-                engineerQuestions();
-            } else if (answers.jobRoles = "intern") {
-                internQuestions();
+            currentTeam.push(intern);
+            console.log(JSON.stringify(answers, null, " "));
+            if (answers.add === true) {
+                addTeamMemberToCard();
             } else {
-                writeToFile();
-            };
+                teamComplete
+            }
+            // let employeeCardHtml = addTeamMemberToCard('intern', teamMember);
+            // currentTeam = currentTeam + employeeCardHtml;
+            // if (answers.jobRoles = "engineer") {
+            //     engineerQuestions();
+            // } else if (answers.jobRoles = "intern") {
+            //     internQuestions();
+            // } else {
+            //     writeToFile();
+            // };
             })})};
 
-
-            function writeToFile() {
-                console.log("added team is " + currentTeam);
-                fs.writeFile("./dist/index.html", html(currentTeam), (error) =>
-                error ? console.log(error): console.log("Completed!"));
+            const writeToFile = data => {
+                fs.writeToFile("./dist/index.html", data, err => {
+                    if (error) {
+                        console.log(error);
+                        return;
+                    } else {
+                        console.log("Team profile has been generated successfully")
+                    }
+                })
             }
+
+
+            // function writeToFile() {
+            //     console.log("added team is " + currentTeam);
+            //     fs.writeFile("./dist/index.html", html(currentTeam), (error) =>
+            //     error ? console.log(error): console.log("Completed!"));
+            // }
             function addTeamMemberToCard(jobRoles, data) {
                 if(jobRoles == "manager"){
                     return `
