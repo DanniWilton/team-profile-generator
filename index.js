@@ -1,10 +1,11 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
 // const employee = require("./lib/employee.js");
-const manager = require("./lib/manager.js");
-const intern = require("./lib/intern.js");
-const engineer = require("./lib/engineer.js");
+const manager = require("../lib/manager.js");
+const intern = require("../lib/intern.js");
+const engineer = require("../lib/engineer.js");
 const generateHtml = require("./dist/index.html");
+
 
 let currentTeam = [];
 
@@ -32,21 +33,14 @@ function askToCreateMember(){
             // generate html
             console.log(currentTeam);
             return;
-            function writeToHtml() {
-              document.write("currentTeam")
-              
-            }
-            
         }
         
-        throw new Error("BUGGG fix this shit");
+        throw new Error("BUGGG");
     }).then( response => {
 
         if(response === undefined){
             return;
         }
-
-
         if(response.hasOwnProperty('github')){
             currentTeam.push(new engineer(response.name, response.id, response.email, response.github));
         }else{
@@ -149,5 +143,23 @@ inquirer
     return askToCreateMember()
    
   })
-
+  function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, (err) =>
+    err? console.error(err) : console.log("YAY! YOUR TEAM PROFILE HAS BEEN GENERATED!!!"))
+  }
+  function init() {
+    inquirer.prompt(questions)
+    .then((answers) =>{
+      let markdown = generateHtml(answers);
+      writeToFile("./dist/index.html", markdown)
+    })
+    .catch((error) => {
+      if(error.isError) {
+        console.log('error');
+      } else {
+        console.log("unknown error occured", error);
+      }
+    })
+  }
+init();
 
