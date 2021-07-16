@@ -84,22 +84,14 @@ function engineerQuestions() {
                 answers.id,
                 answers.github,
             );
-            currentTeam.push(engineer);
+            currentTeam.push(engineer); // issue here
             console.log(JSON.stringify(answers, null, " "));
             if (answers.add === true) {
                 addTeamMemberToCard();
             } else {
                 teamComplete
             }
-            // let employeeCardHtml = addTeamMemberToCard('engineer', teamMember);
-            // currentTeam = currentTeam + employeeCardHtml;
-            // if (answers.jobRoles = "engineer") {
-            //     engineerQuestions();
-            // } else if (answers.jobRoles = "Intern") {
-            //     internQuestions();
-            // } else {
-            //     writeToFile();
-            // }
+
     },
 function internQuestions() {
     inquirer.prompt([
@@ -138,15 +130,7 @@ function internQuestions() {
             } else {
                 teamComplete
             }
-            // let employeeCardHtml = addTeamMemberToCard('intern', teamMember);
-            // currentTeam = currentTeam + employeeCardHtml;
-            // if (answers.jobRoles = "engineer") {
-            //     engineerQuestions();
-            // } else if (answers.jobRoles = "intern") {
-            //     internQuestions();
-            // } else {
-            //     writeToFile();
-            // };
+
             })})};
 
             const writeToFile = data => {
@@ -160,12 +144,6 @@ function internQuestions() {
                 })
             }
 
-
-            // function writeToFile() {
-            //     console.log("added team is " + currentTeam);
-            //     fs.writeFile("./dist/index.html", html(currentTeam), (error) =>
-            //     error ? console.log(error): console.log("Completed!"));
-            // }
             function addTeamMemberToCard(jobRoles, data) {
                 if(jobRoles == "manager"){
                     return `
@@ -195,19 +173,3 @@ function internQuestions() {
                     `;
                 }
             }
-
-            function html(currentTeam) {
-                return `<!DOCTYPE html>
-                <html lang="en">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Document</title>
-                </head>
-                <body>
-                    
-                </body>
-                </html>`;
-            }
-

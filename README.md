@@ -1,5 +1,13 @@
 # 10 Object-Oriented Programming: Team Profile Generator
 
+## Installation
+
+- Clone the repo
+- Open your integrated terminal
+- run the following command in the terminal
+```md
+npm install
+````
 
 ## User Story
 
