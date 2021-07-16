@@ -8,7 +8,7 @@ const engineer = require("./lib/engineer.js");
 let currentTeam = [];
 
 
-/// ask to add eiter enginerr, intern 
+/// ask to add either engineer or intern  
 function askToCreateMember(){
     return inquirer.prompt([
         {
@@ -103,7 +103,7 @@ function askEngineerDetails(){
       ])
 }
 
-// generate the html
+
 
 // ask the user to create a manager
 inquirer
@@ -144,126 +144,4 @@ inquirer
    
   })
 
-function engineerQuestions() {
-  inquirer
-    .prompt([
-      {
-        type: "input",
-        name: "name",
-        message: "Enter Engineer name: ",
-      },
-      {
-        type: "input",
-        name: "email",
-        message: "Enter Engineer email address: ",
-      },
-      {
-        type: "input",
-        name: "id",
-        message: "Enter Engineer ID: ",
-      },
-      {
-        type: "input",
-        name: "github",
-        message: "Enter Engineer github username: ",
-      },
-    ])
-    .then(
-      (answers) => {
-        let newTeamMember = new engineer(
-          answers.name,
-          answers.email,
-          answers.id,
-          answers.github
-        );
-        currentTeam.push(engineer); // issue here
-        console.log(JSON.stringify(answers, null, " "));
-        if (answers.add === true) {
-          addTeamMemberToCard();
-        } else {
-          teamComplete;
-        }
-      },
-      function internQuestions() {
-        inquirer
-          .prompt([
-            {
-              type: "input",
-              name: "name",
-              message: "Enter Intern name: ",
-            },
-            {
-              type: "input",
-              name: "email",
-              message: "Enter Intern email address",
-            },
-            {
-              type: "input",
-              name: "id",
-              message: "Enter Intern ID: ",
-            },
-            {
-              type: "input",
-              name: "school",
-              message: "Enter Interns school: ",
-            },
-          ])
-          .then((answers) => {
-            let teamMember = new intern(
-              answers.name,
-              answers.email,
-              answers.id,
-              answers.school
-            );
-            currentTeam.push(intern);
-            console.log(JSON.stringify(answers, null, " "));
-            if (answers.add === true) {
-              addTeamMemberToCard();
-            } else {
-              teamComplete;
-            }
-          });
-      }
-    );
-}
 
-const writeToFile = (data) => {
-  fs.writeToFile("./dist/index.html", data, (err) => {
-    if (error) {
-      console.log(error);
-      return;
-    } else {
-      console.log("Team profile has been generated successfully");
-    }
-  });
-};
-
-function addTeamMemberToCard(jobRoles, data) {
-  if (jobRoles == "manager") {
-    return `
-                    <div>
-                    <p>Name: ${data.managerName}<p>
-                    <p>ID: ${data.managerId}<p>
-                    <p><a href="mailto:${data.managerEmail}">Email: $data.managerEmail}</a></p>
-                    <p>Office Number: ${data.managerOfficeNumber}</p>
-                    </div>`;
-  } else if (jobRoles == "engineer") {
-    return `
-                    <div>
-                    <p>Name: ${data.name}<p>
-                    <p>ID: ${data.id}<p>
-                    <p><a href="mailto:${data.email}">Email: $data.email}</a></p>
-                    <p><a href="${data.github}" target="_blank">Github</a></p>
-                    </div>
-                    `;
-  } else {
-    return `
-                    <div>
-                    <p>Name: ${data.name}<p>
-                    <p>ID: ${data.id}<p>
-                    <p><a href="mailto:${data.email}">Email: $data.email}</a></p>
-                    <p>School: ${data.school}</p>
-                    </div>
-                    `;
-  }
-}
