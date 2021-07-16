@@ -4,6 +4,7 @@ const inquirer = require("inquirer");
 const manager = require("./lib/manager.js");
 const intern = require("./lib/intern.js");
 const engineer = require("./lib/engineer.js");
+const generateHtml = require("./dist/index.html");
 
 let currentTeam = [];
 
@@ -30,7 +31,12 @@ function askToCreateMember(){
         if(role.toLowerCase() === 'finish'){
             // generate html
             console.log(currentTeam);
-            return; 
+            return;
+            function writeToHtml() {
+              document.write("currentTeam")
+              
+            }
+            
         }
         
         throw new Error("BUGGG fix this shit");
