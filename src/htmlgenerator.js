@@ -3,6 +3,7 @@
 // const employee = require("../index")
 
 // creates different cards
+const employee = require('../index')
 const fs = require('fs');
 let cardArray = [];
 
