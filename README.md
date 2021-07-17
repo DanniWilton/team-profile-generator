@@ -11,6 +11,9 @@ npm install
 - then in the same terminal type "node index.js"
 - The prompts for your team profile will appear into your terminal, answer these prompts and your results will appear in the terminal
 
+## Video Link
+https://drive.google.com/file/d/15xAObxkzRYw8gbYNU6fSl_mBSPhFG3ZV/view?usp=sharing
+
 ## User Story
 
 ```md
