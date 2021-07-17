@@ -8,6 +8,8 @@
 ```md
 npm install
 ````
+- then in the same terminal type "node index.js"
+- The prompts for your team profile will appear into your terminal, answer these prompts and your results will appear in the terminal
 
 ## User Story
 
@@ -37,3 +39,6 @@ WHEN I select the intern option
 THEN I am prompted to enter the intern’s name, ID, email, and school, and I am taken back to the menu
 WHEN I decide to finish building my team
 THEN I exit the application, and the HTML is generated
+
+## Author 
+Dannielle Wilton, Full Stack Web Dev student at University of Western Australia
