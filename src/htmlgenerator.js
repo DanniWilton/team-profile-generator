@@ -5,6 +5,8 @@
 // creates different cards
 // const employee = require('../index')
 const fs = require('fs');
+const { format } = require('path');
+const { formatWithOptions } = require('util');
 let cardArray = [];
 
 function managerCard(manager) {
@@ -44,34 +46,46 @@ function internCard(intern) {
 // takes info / array of objects from inquirer, loops thru the objects getRole, aka newEmployee.getRole else if, run card function into array of html elements 
 
 function createCards(newTeam) {
+    let formattedEmployees = ""
     for (let i = 0; i < newTeam.length; i++) {
         console.log("newTeam length", newTeam.length)
         console.log("this is the new team html", newTeam)
-        const newCard = newTeam[i]
-        console.log("this is new card html", newCard)
-        const employeeRole = newCard.getRole();
-        console.log("this is employeeRole", employeeRole)
-        if (employeeRole === "Manager"){
-            let newManager = managerCard(newCard);
-            console.log("newManager = ", newManager)
-            cardArray.push(newManager)
+        let employeeRole = newTeam[i].getRole();
+        if (employeeRole === "manager"){
+            formattedEmployees = formattedEmployees.concat(`<div>
+            <h2>Manager</h2>
+            <h3>Name: ${newTeam[i].getName()}</h3>
+            <h3>Email: ${newTeam[i].getEmail()}</h3>
+            <h3>ID: ${newTeam[i].id}</h3>
+            <h3>Office Number: ${newTeam[i].officeNumber}</h3>
+            </div>`)
         }
 
-        if (employeeRole === "Engineer") {
-            let newEngineer = engineerCard(newCard);
-            console.log("newEngineer html = ", newEngineer)
-            cardArray.push(newEngineer)
+        if (employeeRole === "engineer") {
+            formattedEmployees = formattedEmployees.concat(`<div>
+            <h2>Engineer</h2>
+            <h3>Name: ${newTeam[i].getName()}</h3>
+            <h3>Email: ${newTeam[i].getEmail()}</h3>
+            <h3>name:${newTeam[i].github}</h3>
+            <h3>name:${newTeam[i].id}</h3>
+            </div>`)
+            
         }
-        if (employeeRole === "Intern") {
-            let newIntern = internCard(newCard);
-            console.log("newIntern html = ", newIntern)
-            cardArray.push(newIntern)
+        if (employeeRole === "intern") {
+            formattedEmployees = formattedEmployees.concat(`<div>
+            <h2>Intern</h2>
+            <h3>Name: ${newTeam[i].getName()}</h3>
+            <h3>Email: ${newTeam[i].getEmail()}</h3>
+            <h3>name:${newTeam[i].id}</h3>
+            <h3>name:${newTeam[i].school}</h3>
+            </div>`)
         }
         else {
             html = cardArray.join(" <br> ")
         }
-        htmlWrite(html)
+        // htmlWrite(html)
     }
+    return formattedEmployees
 };
 
 function createNewHtml(data) {
@@ -81,8 +95,7 @@ function createNewHtml(data) {
 }
 
 function htmlWrite(newTeam) {
-    console.log("this is card array", cardArray)
-    console.log("htmlWrite Start")
+    // console.log("this is card array", newTeam)
     data = `<!DOCTYPE html>
     <html lang="en">
     <head>
@@ -101,7 +114,7 @@ function htmlWrite(newTeam) {
     createNewHtml(data)
 }
 
-module.exports = createNewHtml
+module.exports = htmlWrite
 // function that creates index . html (new index.html is created)
 
 // use html template literal, which has container for the card which has the card array = data 

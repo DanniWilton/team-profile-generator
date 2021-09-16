@@ -1,14 +1,11 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
-// const employee = require("./lib/employee.js");
 const manager = require("./lib/manager.js");
 const intern = require("./lib/intern.js");
 const engineer = require("./lib/engineer.js");
-// const createCards = require("./src/htmlgenerator");
-const createNewHtml = require("./src/htmlgenerator");
+const htmlWrite = require("./src/htmlgenerator");
 
 let currentTeam = [];
-
 
 /// ask to add either engineer or intern  
 function askToCreateMember(){
@@ -31,8 +28,8 @@ function askToCreateMember(){
         }
         if(role.toLowerCase() === 'finish'){
             // generate html
-            console.log(currentTeam);
-            createNewHtml(currentTeam)
+            console.log("my current team", currentTeam);
+            htmlWrite(currentTeam)
             return 
         }
         
@@ -103,8 +100,6 @@ function askEngineerDetails(){
         },
       ])
 }
-
-
 
 // ask the user to create a manager
 inquirer
