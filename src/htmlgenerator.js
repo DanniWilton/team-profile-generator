@@ -9,38 +9,6 @@ const { format } = require('path');
 const { formatWithOptions } = require('util');
 let cardArray = [];
 
-function managerCard(manager) {
-    return `
-    <div class="manager">
-    <h2 id="managerHead">Manager</h2>
-    <h3>name:${manager.managerName}</h3>
-    <h3>name:${manager.managerEmail}</h3>
-    <h3>name:${manager.managerId}</h3>
-    <h3>name:${manager.managerOfficeNumber}</h3>
-    </div>`
-}
-
-function engineerCard(engineer) {
-    return `
-    <div class="engineer">
-    <h2 id="managerHead">Manager</h2>
-    <h3>name:${engineer.name}</h3>
-    <h3>name:${engineer.email}</h3>
-    <h3>name:${engineer.github}</h3>
-    <h3>name:${engineer.id}</h3>
-    </div>`
-}
-
-function internCard(intern) {
-    return `
-    <div class="intern">
-    <h2 id="managerHead">Manager</h2>
-    <h3>name:${intern.name}</h3>
-    <h3>name:${intern.email}</h3>
-    <h3>name:${intern.id}</h3>
-    <h3>name:${intern.school}</h3>
-    </div>`
-}
 // 3 functions
 // function that creates the cards
 // takes info / array of objects from inquirer, loops thru the objects getRole, aka newEmployee.getRole else if, run card function into array of html elements 
@@ -102,9 +70,12 @@ function htmlWrite(newTeam) {
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+        <title>Team Profile</title>
     </head>
     <body>
+    <header class="content is-medium has-text-centered has-background-primary"/>
+
         <div>
             ${createCards(newTeam)}
         </div>
@@ -115,13 +86,3 @@ function htmlWrite(newTeam) {
 }
 
 module.exports = htmlWrite
-// function that creates index . html (new index.html is created)
-
-// use html template literal, which has container for the card which has the card array = data 
-// create an array of the divs
-
-// function that writes html 
-//   function writeToFile(data) {
-//     fs.writeFile("./dist/index.html", data, (err) =>
-//     err? console.error(err) : console.log("YAY! YOUR TEAM PROFILE HAS BEEN GENERATED!!!"))
-//   }
