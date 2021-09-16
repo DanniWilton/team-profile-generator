@@ -4,7 +4,8 @@ const fs = require("fs");
 const manager = require("./lib/manager.js");
 const intern = require("./lib/intern.js");
 const engineer = require("./lib/engineer.js");
-const createCards = require("./src/htmlgenerator");
+// const createCards = require("./src/htmlgenerator");
+const createNewHtml = require("./src/htmlgenerator");
 
 let currentTeam = [];
 
@@ -31,8 +32,8 @@ function askToCreateMember(){
         if(role.toLowerCase() === 'finish'){
             // generate html
             console.log(currentTeam);
-            return
-            createCards(currentTeam)
+            createNewHtml(currentTeam)
+            return 
         }
         
         throw new Error("BUGGG");
@@ -143,4 +144,4 @@ inquirer
     return askToCreateMember()
    
   })
-//write file
+//write to file
